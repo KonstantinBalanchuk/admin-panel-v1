@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-class FormContainer extends Component {
+
+class Main extends Component {
     constructor() {
         super();
         this.state = {
@@ -9,9 +10,12 @@ class FormContainer extends Component {
     }
     render() {
         return (
-            <form id="article-form">
-            </form>
+            <h1>Hello world</h1>
     );
     }
 }
-export default FormContainer;
+
+export default Main;
+
+const wrapper = document.getElementById("root");
+wrapper ? ReactDOM.render(<Main />, wrapper) : false;
