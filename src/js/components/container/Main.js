@@ -21,11 +21,10 @@ class Main extends Component {
 
     sendmessage = async () => {
         // const apiUrl = 'https://api.telegram.org/bot';
-        // const token = '895555100:AAFNqaj6zHSlJ1QzChvln7j2ki5kxxVrlt8';
         // const method = 'sendMessage';
 
         try {
-            const data = await this.postData('https://api.telegram.org/bot895555100:AAFNqaj6zHSlJ1QzChvln7j2ki5kxxVrlt8/sendPoll', {
+            const data = await this.postData('https://api.telegram.org/bot{token}/sendPoll', {
                 'chat_id': -332588433,
                 // 'text': 'hello world'
                 'question': 'btfht',
@@ -35,9 +34,10 @@ class Main extends Component {
         } catch (error) {
             console.error(error);
         }
+        {token}
 
-        // this.postData('https://api.telegram.org/bot895555100:AAFNqaj6zHSlJ1QzChvln7j2ki5kxxVrlt8/sendMessage', {'chat_id': 461497162, 'text': 'hello world'} )
-        // return this.postData('https://api.telegram.org/bot895555100:AAFNqaj6zHSlJ1QzChvln7j2ki5kxxVrlt8/sendPoll', {'chat_id': 461497162, 'question': 'btfht', 'options': ['gb','Нgbf']} )
+        // this.postData('https://api.telegram.org/bot{token}/sendMessage', {'chat_id': 461497162, 'text': 'hello world'} )
+        // return this.postData('https://api.telegram.org/bot{token}/sendPoll', {'chat_id': 461497162, 'question': 'btfht', 'options': ['gb','Нgbf']} )
 
     };
 
