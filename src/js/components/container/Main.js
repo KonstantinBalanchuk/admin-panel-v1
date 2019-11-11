@@ -19,33 +19,64 @@ class Main extends Component {
         return await response.json(); // parses JSON response into native JavaScript objects
     }
 
-    sendmessage = async () => {
-        // const apiUrl = 'https://api.telegram.org/bot';
-        // const method = 'sendMessage';
+    async getData() {
+        const url = 'https://api.telegram.org/bot{token}/getUpdates';
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        return data.result.filter(update => update.hasOwnProperty('poll'));
+    }
 
+    // sendMessage = async () => {
+    //     // const apiUrl = 'https://api.telegram.org/bot';
+    //     // const method = 'sendMessage';
+    //
+    //     try {
+    //         const data = await this.postData('https://api.telegram.org/bot{token}/sendPoll', {
+    //             'chat_id': -332588433,
+    //             // 'text': 'hello world'
+    //             'question': 'btfht',
+    //             'options': ['gb', 'Нgbf']
+    //         });
+    //         console.log(data); // JSON-string from `response.json()` call
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    //     {token}
+    //
+    //     // this.postData('https://api.telegram.org/bot{token}/sendMessage', {'chat_id': 461497162, 'text': 'hello world'} )
+    //     // return this.postData('https://api.telegram.org/bot{token}/sendPoll', {'chat_id': 461497162, 'question': 'btfht', 'options': ['gb','Нgbf']} )
+    //
+    // };
+
+
+    sendMessage = async () => {
         try {
-            const data = await this.postData('https://api.telegram.org/bot{token}/sendPoll', {
-                'chat_id': -332588433,
-                // 'text': 'hello world'
-                'question': 'btfht',
-                'options': ['gb', 'Нgbf']
+            await this.postData('https://api.telegram.org/bot{token}/sendPoll', {
+                'chat_id': -337921637,
+                'question': 'Do you know the solution?',
+                'options': ['Yes!', 'No;(']
             });
-            console.log(data); // JSON-string from `response.json()` call
         } catch (error) {
             console.error(error);
         }
-        {token}
+    };
 
-        // this.postData('https://api.telegram.org/bot{token}/sendMessage', {'chat_id': 461497162, 'text': 'hello world'} )
-        // return this.postData('https://api.telegram.org/bot{token}/sendPoll', {'chat_id': 461497162, 'question': 'btfht', 'options': ['gb','Нgbf']} )
-
+    getUpdates = async () => {
+        try {
+            await this.getData()
+                .then(resp => console.log(resp))
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     render() {
         return (
             <div>
                 <h1>Hello world</h1>
-                <button onClick={this.sendmessage}>send message</button>
+                <button onClick={this.sendMessage}>Send message</button>
+                <button onClick={this.getUpdates}>Get statistics</button>
             </div>
         );
     }
